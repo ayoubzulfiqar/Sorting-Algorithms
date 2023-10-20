@@ -1,0 +1,24 @@
+# Go variables
+GO       := go
+GOTEST   := $(GO) test
+GOBENCH  := $(GO) test -bench=.
+BUILD    := $(GO) build
+BINARY   := bin/main   # Set the binary name and path as needed
+
+# Targets
+.PHONY: test bench build clean
+
+run:
+	go run cmd/main.go
+
+test:
+	$(GOTEST) ./...
+
+bench:
+	$(GOBENCH) ./...
+
+build:
+	$(BUILD) -o $(BINARY) ./cmd/main.go  # Replace ./main.go with your main file
+
+clean:
+	rm -f $(BINARY)
